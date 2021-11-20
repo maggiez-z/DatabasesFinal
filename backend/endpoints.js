@@ -136,4 +136,14 @@ router.post('/postuser', (req, res) => {
     });
 });
 
+router.get('/getUser/:user_id', (req, res) => {
+    db.all(
+      'SELECT * FROM User WHERE user_id = ?;',
+      [req.params.user_id],
+      function(err, rows) {
+        err ? res.send(err) : res.send(rows);
+      }
+    )
+});
+
 module.exports = { router, db };
