@@ -1,0 +1,9 @@
+To get setup all you need to do is run
+
+npm install
+
+From the backend folder.
+
+Then to start the DB run
+
+node .

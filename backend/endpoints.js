@@ -122,4 +122,18 @@ router.get('/users', (req, res) => {
     });
 });
 
+router.post('/postuser', (req, res) => {
+    db.run(
+      'INSERT INTO User (user_id, user_name, email, password, address, phone_number, favorite_food) VALUES (?, ?, ?, ?, ?, ?, ?);',
+      [req.body.user_id, req.body.user_name, req.body.email, req.body.password, req.body.address, req.body.phone_number, req.body.favorite_food],
+      function(err) {
+        if (err){
+          res.send(err);
+        } 
+        else { 
+          res.send(this);
+        }
+    });
+});
+
 module.exports = { router, db };
