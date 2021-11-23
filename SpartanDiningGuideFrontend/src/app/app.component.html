@@ -1,12 +1,18 @@
 <div class="main-container">
-  <div class="progress-buttons">
-    <label>Spartan Dining Guide</label>
-    <div class="buttons-wrapper">
-      <button pButton pRipple type="button" label="Login" class="p-button-rounded p-button-lg login"></button>
-      <button pButton pRipple type="button" label="Sign Up" class="p-button-rounded p-button-lg"></button>
+  <ng-container *ngIf="!ls.loggedIn; else home">
+    <div class="progress-buttons">
+      <label>Spartan Dining Guide</label>
+      <div class="buttons-wrapper">
+        <button pButton pRipple type="button" label="Login" class="p-button-rounded p-button-lg login" (click)="ls.chooseLogin()"></button>
+        <button pButton pRipple type="button" label="Sign Up" class="p-button-rounded p-button-lg" (click)="ls.chooseSignIn()"></button>
+      </div>
     </div>
-  </div>
-  <div class="progress-options">
-    <app-login></app-login>
-  </div>
+    <div class="progress-options">
+      <app-login *ngIf="ls.loginShow"></app-login>
+      <app-signin *ngIf="ls.signInShow"></app-signin>
+    </div>
+  </ng-container>
+  <ng-template #home>
+    <router-outlet></router-outlet>
+  </ng-template>
 </div>

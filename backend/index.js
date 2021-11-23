@@ -13,7 +13,7 @@ const ORIGIN = process.env.ORIGIN;
 
 
 app.use(express.json());
-//app.use(cors({origin: ORIGIN}))
+app.use(cors({origin: '*'}))
 app.use('/', router);
 
 const httpServer = http.createServer(app);
