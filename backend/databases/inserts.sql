@@ -1,11 +1,10 @@
-/*
+
 INSERT INTO User (user_id, user_name, email, password, address, phone_number, favorite_food) VALUES
   (000001, 'mattepstein', 'mae108@case.edu', 'test1234', 'Ohio', '123-456-7890', 'chicken'),
   (000002, 'karenji', 'krj34@case.edu', 'test12345', 'Ohio', '123-456-7890', 'pasta'),
   (000003, 'zhaokuanchen', 'zxc347@case.edu', 'test12346', 'Ohio', '123-456-7890', 'pizza'),
   (000004, 'maggiebutterfield', 'mlb226@case.edu', 'test12347', 'Ohio', '123-456-7890', 'burgers');
 
-*/
 INSERT INTO Restaurant (restaurant_id, restaurant_name, area, address, chef, capacity, phone_number, website, cuisine, Monday_From, Monday_To, Tuesday_From, Tuesday_To, Wednesday_From, Wednesday_To, Thursday_From, Thursday_To, Friday_From, Friday_To, Saturday_From, Saturday_To, Sunday_From, Sunday_To) VALUES
   (000001, 'TheDen', 'southside', 'test1234', 'chefA', 23, '123-456-7890', 'case.edu', 'american', '2100','0200', '2100','0200', '2100','0200', '2100','0200', '2100','0200', '2100','0200', '2100','0200'),
   (000002, 'Rascal', 'Uptown', 'test12345', 'chefB', 24, '216-456-7890', 'case.edu', 'Italian', '0700','0200', '0700','0200', '0700','0200', '2100','0200', '2100','0200', '2100','0200', '2100','0200'),

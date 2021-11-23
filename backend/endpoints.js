@@ -181,6 +181,15 @@ router.get('/verifyLogin/:user_name/:password', (req, res) => {
   )
 });
 
+router.get('/highestUserId', (req, res) => {
+  db.all(
+    'SELECT MAX(user_id) as max FROM User;',
+    function(err, rows) {
+      err ? res.send(err) : res.send(rows);
+    }
+  )
+});
+
 //Restaurants table 
 router.get('/restaurants', (req, res) => {
     db.all(
