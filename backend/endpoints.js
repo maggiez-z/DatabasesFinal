@@ -6,6 +6,7 @@ const sqlite = require('sqlite3');
 const router = express.Router();
 dotenv.config();
 
+
 const DB_PATH = process.env.DB_PATH;
 const CREATE_USER_SQL = process.env.CREATE_USER_SQL;
 const CREATE_REST_SQL = process.env.CREATE_REST_SQL;
