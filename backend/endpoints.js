@@ -19,7 +19,9 @@ const CREATE_GIVE_ANSWER_SQL = process.env.CREATE_GIVE_ANSWER_SQL;
 const CREATE_HAS_MENU_SQL = process.env.CREATE_HAS_MENU_SQL;
 const CREATE_HAS_DISH_SQL = process.env.CREATE_HAS_DISH_SQL;
 const CREATE_HAS_PARKING_SQL = process.env.CREATE_HAS_PARKING_SQL;
-
+const CREATE_RATE_REST_SQL = process.env.CREATE_RATE_REST_SQL;
+const CREATE_REST_QUESTION_SQL= process.env.CREATE_REST_QUESTION_SQL;
+const CREATE_HAS_ANSWER_SQL= process.env.CREATE_HAS_ANSWER_SQL;
 
 const db = new sqlite.Database(DB_PATH, (err) => {
     if (err) {
@@ -104,6 +106,27 @@ db.run(CREATE_HAS_PARKING_SQL, err => {
         return console.error(err.message);
     }
     console.log("Successfully created Has_Parking table!");
+});
+
+db.run(CREATE_RATE_REST_SQL, err => {
+  if (err) {
+      return console.error(err.message);
+  }
+  console.log("Successfully created Rate_restaurant table!");
+});
+
+db.run(CREATE_REST_QUESTION_SQL, err => {
+  if (err) {
+      return console.error(err.message);
+  }
+  console.log("Successfully created Restaurant_question table!");
+});
+
+db.run(CREATE_HAS_ANSWER_SQL, err => {
+  if (err) {
+      return console.error(err.message);
+  }
+  console.log("Successfully created Has_answer table!");
 });
 
 router.get('/', (req, res) => {
