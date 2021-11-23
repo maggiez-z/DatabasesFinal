@@ -171,6 +171,16 @@ router.get('/getUser/:user_id', (req, res) => {
     )
 });
 
+router.get('/verifyLogin/:user_name/:password', (req, res) => {
+  db.all(
+    'SELECT * FROM User WHERE user_name = ? AND password = ?;',
+    [req.params.user_name, req.params.password],
+    function(err, rows) {
+      err ? res.send(err) : res.send(rows);
+    }
+  )
+});
+
 //Restaurants table 
 router.get('/restaurants', (req, res) => {
     db.all(
