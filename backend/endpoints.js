@@ -193,7 +193,7 @@ router.get('/highestUserId', (req, res) => {
 //Restaurants table 
 router.get('/restaurants', (req, res) => {
     db.all(
-        'SELECT restaurant_id, restaurant_name, area, address, chef, capacity, phone_number, website, cuisine, Monday_availability, Tuesday_availability, Wednesday_availability, Thursday_availability, Friday_availability, Saturday_availability, Sunday_availability FROM Rest;',
+        'SELECT * FROM Restaurant;',
         function(err, rows){
           if (err){
             res.send(err);

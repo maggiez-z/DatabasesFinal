@@ -24,6 +24,5 @@
         <i class="pi pi-search"></i>
         <input type="text" pInputText [(ngModel)]="favFood" placeholder="Favorite Food">         
     </span>
-    <button pButton pRipple type="button" label="Login" class="p-button-secondary p-button-rounded p-button-lg submit" (click)="ls.login(userName, password)"></button>
-    <label *ngIf="ls.failed" class="failed-alert">Incorrect User Name or Password</label>
+    <button pButton pRipple type="button" label="Sign Up" class="p-button-secondary p-button-rounded p-button-lg submit" (click)="sendSignup()"></button>
 </div>

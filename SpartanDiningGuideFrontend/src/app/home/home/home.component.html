@@ -1,1 +1,16 @@
-<p>home works!</p>
+<!-- Top bar -->
+<div class="top-bar">
+    <label>Spartan Dining Guide</label>
+    <button pButton pRipple type="button" icon="pi pi-user" label="Profile" class="p-button-text p-button-lg profile-btn"></button>
+</div>
+<div class="home-body">
+    <div class="data-view">
+        <p-dataView [value]="restaurants">
+            <ng-template let-restaurant pTemplate="listItem">
+                <div>
+                    {{restaurant.restaurant_name}}
+                </div>
+            </ng-template>
+        </p-dataView>    
+    </div>
+</div>

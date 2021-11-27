@@ -22,4 +22,9 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  sendSignup() {
+    let userObj = {user_name: this.userName, email: this.email, password: this.password, address: this.address, phone_number: this.phone, favorite_food: this.favFood}
+    this.ls.signup(userObj);
+  }
+
 }

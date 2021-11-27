@@ -1,0 +1,25 @@
+.top-bar {
+    height: 72px;
+    width: 100vw;
+    background-color: rgb(0, 119, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    label {
+        padding: 32px;
+        font-size: 32px;
+        color: white;
+    }
+    .profile-btn {
+        color: white;
+        padding-left: 32px;
+        padding-right: 32px;
+        border-left: 2px solid white;
+    }
+}
+.home-body {
+    width: 100vw;
+    .data-view {
+        padding: 84px;
+    }
+}

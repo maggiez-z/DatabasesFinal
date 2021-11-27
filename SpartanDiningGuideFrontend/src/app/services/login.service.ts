@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  loggedIn: boolean = false;
+  loggedIn: boolean = true;
   failed: boolean = false;
 
   signInShow: boolean = false;
@@ -17,6 +17,12 @@ export class LoginService {
     private http: HttpClient,
     public router: Router
   ) { }
+
+  ngOnInit() {
+    if (this.loggedIn) {
+      this.router.navigate(['/home']);
+    }
+  }
 
   get(table: string): Promise<any> {
     return this.http.get(`http://localhost:8000/${table}`).toPromise()
@@ -36,6 +42,23 @@ export class LoginService {
         }
       })
     })
+  }
+
+  signup(userObj: any) {
+    this.get('highestUserId').then(res => {
+      if (res) {
+        userObj['user_id'] = res[0]['max'] + 1;
+        console.log(userObj);
+        this.http.post('http://localhost:8000/postuser',userObj).toPromise().then(res => {
+          this.loggedIn = true;
+          this.failed = false;  
+          this.router.navigate(['/home']);
+       });
+      }
+      else {
+        this.failed = true;
+      }
+    });
   }
 
   chooseLogin() {
