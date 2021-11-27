@@ -20,6 +20,50 @@
 .home-body {
     width: 100vw;
     .data-view {
-        padding: 84px;
+        padding: 44px;
+    }
+    .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .user-name-input {
+            margin-bottom: 48px;
+        }
+        .submit {
+            margin-top: 36px;
+            margin-bottom: 36px;
+        }
+        .header-label {
+            font-size: 36px;
+            color: rgb(0, 119, 255);
+            margin-bottom: 36px;
+        }
+    }
+}
+.rest-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    .rest-list-detail {
+        flex: 1 1 0;
+        .rest-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .rest-description {
+            margin-bottom: 1rem;
+        }
+        .rest-icon {
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        .rest-phone {
+            font-weight: 600;
+            vertical-align: middle;
+        }
+    }
+    .rest-list-action {
+
     }
 }

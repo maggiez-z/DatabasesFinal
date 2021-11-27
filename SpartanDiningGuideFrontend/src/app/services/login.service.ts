@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  loggedIn: boolean = true;
+  loggedIn: boolean = false;
   failed: boolean = false;
 
   signInShow: boolean = false;
   loginShow: boolean = false;
+
+  currentUser: any;
 
   constructor(
     private http: HttpClient,
@@ -33,6 +35,7 @@ export class LoginService {
       this.get('verifyLogin/' + userName + '/' + password).then(res => {
         if (res.length) {
           this.loggedIn = true;
+          this.currentUser = res[0];
           this.failed = false;
           this.router.navigate(['/home']);
           resolve(res);

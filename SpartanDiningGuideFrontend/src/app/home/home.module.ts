@@ -4,6 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
@@ -16,6 +19,9 @@ import { DataViewModule } from 'primeng/dataview';
     RouterModule,
     ButtonModule,
     DataViewModule,
+    DropdownModule,
+    FormsModule,
+    InputTextModule,
     CommonModule
   ]
 })
