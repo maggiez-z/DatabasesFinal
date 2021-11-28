@@ -256,10 +256,10 @@ router.post('/postmenu', (req, res) => {
     });
 });
 
-router.get('/getMenu/:menu_id', (req, res) => {
+router.get('/getMenu/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT * FROM Menu WHERE menu_id = ?;',
-      [req.params.menu_id],
+      'SELECT m.menu_id, m.type FROM has_menu h, Menu m WHERE h.restaurant_id = ? AND h.menu_id = m.menu_id;',
+      [req.params.restaurant_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
@@ -294,17 +294,17 @@ router.post('/postdish', (req, res) => {
     });
 });
 
-router.get('/getDish/:dish_id', (req, res) => {
+router.get('/getDish/:menu_id', (req, res) => {
     db.all(
-      'SELECT * FROM Dish WHERE dish_id = ?;',
-      [req.params.dish_id],
+      'SELECT d.dish_id, d.type FROM has_dish h, Dish d WHERE h.menu_id = ? AND h.dish_id = d.dish_id;',
+      [req.params.menu_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
     )
 });
 
-//Write Rating table
+//Rating table
 router.get('/ratings', (req, res) => {
     db.all(
         'SELECT user_id, rating_id, comfortability, food_quality, service, cleanliness, comment FROM Write_rating;',
@@ -332,10 +332,10 @@ router.post('/postrating', (req, res) => {
     });
 });
 
-router.get('/getRating/:rating_id', (req, res) => {
+router.get('/getRating/:user_id', (req, res) => {
     db.all(
-      'SELECT * FROM Write_rating WHERE rating_id = ?;',
-      [req.params.rating_id],
+      'SELECT w.rating_id, w.type FROM Rating_restaurant r, Write_rating w WHERE r.user_id = ? AND r.rating_id = w.rating_id AND r.restaurant_id = w.restaurant_id;',
+      [req.params.user_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
@@ -370,17 +370,17 @@ router.post('/postparking', (req, res) => {
     });
 });
 
-router.get('/getParking/:parking_id', (req, res) => {
+router.get('/getParking/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT * FROM Write_rating WHERE parking_id = ?;',
-      [req.params.parking_id],
+      'SELECT p.parking_id, p.type FROM has_parking h, Parking p WHERE h.restaurant_id = ? AND h.parking_id = p.parking_id;',
+      [req.params.restaurant_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
     )
 });
 
-//Ask question table
+//Question table
 router.get('/questions', (req, res) => {
     db.all(
         'SELECT question_id, question, time_asked FROM Ask_question;',
@@ -408,17 +408,17 @@ router.post('/postquestion', (req, res) => {
     });
 });
 
-router.get('/getQuestion/:question_id', (req, res) => {
+router.get('/getQuestion/:user_id', (req, res) => {
     db.all(
-      'SELECT * FROM Ask_question WHERE question_id = ?;',
-      [req.params.question_id],
+      'SELECT q.question_id, q.type FROM Restaurant_question r, Ask_question q WHERE r.user_id = ? AND r.question_id = q.question_id AND r.restaurant_id = q.restaurant_id;',
+      [req.params.user_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
     )
 });
 
-//Give answer table
+//Answer table
 router.get('/answers', (req, res) => {
     db.all(
         'SELECT answer_id, answer, time_answered FROM Give_answer;',
@@ -446,10 +446,10 @@ router.post('/postanswer', (req, res) => {
     });
 });
 
-router.get('/getAnswer/:answer_id', (req, res) => {
+router.get('/getAnswer/:user_id', (req, res) => {
     db.all(
-      'SELECT * FROM Give_answer WHERE answer_id = ?;',
-      [req.params.answer_id],
+      'SELECT a.answer_id, a.type FROM has_answer h, Give_answer a WHERE h.user_id = ? AND h.answer_id = a.answer_id AND h.question_id = a.question_id;',
+      [req.params.user_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
