@@ -193,7 +193,7 @@ router.get('/highestUserId', (req, res) => {
 //Restaurants table 
 router.get('/restaurants', (req, res) => {
     db.all(
-        'SELECT restaurant_id, restaurant_name, area, address, chef, capacity, phone_number, website, cuisine, Monday_availability, Tuesday_availability, Wednesday_availability, Thursday_availability, Friday_availability, Saturday_availability, Sunday_availability FROM Rest;',
+        'SELECT restaurant_id, restaurant_name, area, address, chef, capacity, phone_number, website, cuisine, Monday_From, Monday_To, Tuesday_From, Tuesday_To, Wednesday_From, Wednesday_To, Thursday_From, Thursday_To, Friday_From, Friday_To, Saturday_From, Saturday_To, Sunday_From, Sunday_To FROM Restaurant;',
         function(err, rows){
           if (err){
             res.send(err);
@@ -256,9 +256,9 @@ router.post('/postmenu', (req, res) => {
     });
 });
 
-router.get('/getMenu/:menu_id', (req, res) => {
+router.get('/getMenu/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT * FROM Menu WHERE menu_id = ?;',
+      'SELECT * FROM Menu WHERE restaurant_id = ?;',
       [req.params.menu_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -294,9 +294,9 @@ router.post('/postdish', (req, res) => {
     });
 });
 
-router.get('/getDish/:dish_id', (req, res) => {
+router.get('/getDish/:menu_id', (req, res) => {
     db.all(
-      'SELECT * FROM Dish WHERE dish_id = ?;',
+      'SELECT * FROM Dish WHERE menu_id = ?;',
       [req.params.dish_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -304,7 +304,7 @@ router.get('/getDish/:dish_id', (req, res) => {
     )
 });
 
-//Write Rating table
+//Rating table
 router.get('/ratings', (req, res) => {
     db.all(
         'SELECT user_id, rating_id, comfortability, food_quality, service, cleanliness, comment FROM Write_rating;',
@@ -332,9 +332,9 @@ router.post('/postrating', (req, res) => {
     });
 });
 
-router.get('/getRating/:rating_id', (req, res) => {
+router.get('/getRating/:user_id', (req, res) => {
     db.all(
-      'SELECT * FROM Write_rating WHERE rating_id = ?;',
+      'SELECT * FROM Write_rating WHERE user_id = ?;',
       [req.params.rating_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -370,9 +370,9 @@ router.post('/postparking', (req, res) => {
     });
 });
 
-router.get('/getParking/:parking_id', (req, res) => {
+router.get('/getParking/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT * FROM Write_rating WHERE parking_id = ?;',
+      'SELECT * FROM Write_rating WHERE restaurant_id = ?;',
       [req.params.parking_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -380,7 +380,7 @@ router.get('/getParking/:parking_id', (req, res) => {
     )
 });
 
-//Ask question table
+//Question table
 router.get('/questions', (req, res) => {
     db.all(
         'SELECT question_id, question, time_asked FROM Ask_question;',
@@ -408,9 +408,9 @@ router.post('/postquestion', (req, res) => {
     });
 });
 
-router.get('/getQuestion/:question_id', (req, res) => {
+router.get('/getQuestion/:user_id', (req, res) => {
     db.all(
-      'SELECT * FROM Ask_question WHERE question_id = ?;',
+      'SELECT * FROM Ask_question WHERE user_id = ?;',
       [req.params.question_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -418,7 +418,7 @@ router.get('/getQuestion/:question_id', (req, res) => {
     )
 });
 
-//Give answer table
+//Answer table
 router.get('/answers', (req, res) => {
     db.all(
         'SELECT answer_id, answer, time_answered FROM Give_answer;',
@@ -446,9 +446,9 @@ router.post('/postanswer', (req, res) => {
     });
 });
 
-router.get('/getAnswer/:answer_id', (req, res) => {
+router.get('/getAnswer/:user_id', (req, res) => {
     db.all(
-      'SELECT * FROM Give_answer WHERE answer_id = ?;',
+      'SELECT * FROM Give_answer WHERE user_id = ?;',
       [req.params.answer_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
