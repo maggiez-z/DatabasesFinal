@@ -23,12 +23,31 @@ INSERT INTO Menu (menu_id, type) VALUES
   (000006, 'dinner');
 
 INSERT INTO Dish (dish_id, dish_name, ingredients, calories, price) VALUES
-  (000001, 'Den Burger', 'Beef, Lettuce, Tomato', 400, 7),
+  (000001, 'Little Den Burger', 'Beef, Lettuce, Tomato', 400, 7),
+  (000006, 'Den Burger', 'Beef, Lettuce, Tomato', 400, 7),
   (000002, 'Pokebowl', 'Beef, Lettuce, Shimp', 300, 12),
   (000003, 'Udon bowl', 'Tofu, noodle', 200, 9),
   (000004, 'Ramen', 'pork, corn, noodle', 300, 13),
-  (000005, 'Chipotle Burger', 'Beef, Pork, Tomato, lettuce', 450, 8);
+  (000005, 'Chipotle Burger', 'Beef, Pork, Tomato, lettuce', 450, 8),
+  (000007, 'Grand Slam', 'Scrambled Eggs, Bacon, Pancakes or French Toast', 1000, 8),
+  (000008, 'Chipotle Burger Jr', 'Beef, Pork, Tomato, lettuce', 450, 8);
 
+INSERT INTO Has_menu (restaurant_id, menu_id) VALUES
+  (000001, 000001),
+  (000001, 000006),
+  (000002, 000002),
+  (000003, 000003),
+  (000004, 000004),
+  (000005, 000005);
+
+INSERT INTO Has_dish(menu_id, dish_id) VALUES
+  (000006, 000001),
+  (000006, 000006),
+  (000001, 000007),
+  (000002, 000002),
+  (000003, 000003),
+  (000004, 000004),
+  (000005, 000005);
 
 INSERT INTO Write_rating (user_id, rating_id, comfortability, food_quality, service, cleanliness, comment) VALUES
   (000001, 000001, 4, 4, 4, 4, 'great food'),
@@ -84,22 +103,10 @@ INSERT INTO Has_answer (user_id , answer_id, question_id) VALUES
   (000004, 000004, 000004),
   (000005, 000005, 000005);
 
-INSERT INTO Has_menu (restaurant_id, menu_id) VALUES
-  (000001, 000001),
-  (000002, 000002),
-  (000003, 000003),
-  (000004, 000004),
-  (000005, 000005);
-
-INSERT INTO Has_dish(menu_id, dish_id) VALUES
-  (000001, 000001),
-  (000002, 000002),
-  (000003, 000003),
-  (000004, 000004),
-  (000005, 000005);
 
 INSERT INTO Has_Parking(restaurant_id, parking_id) VALUES
   (000001, 000001),
+  (000001, 000002),
   (000002, 000002),
   (000003, 000003),
   (000004, 000004),
