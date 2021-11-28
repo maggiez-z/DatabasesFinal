@@ -68,8 +68,10 @@
 
     }
 }
+
 .rest-detail {
     padding: 44px;
+    height: max-content;
     .detail-header {
         display: flex;
         align-items: flex-start;
@@ -112,6 +114,16 @@
             width: 70vw;
             border: 1px solid rgb(168, 168, 168);
             border-radius: 10px;
+            .hours-container {
+                display: flex;
+                flex-direction: column;
+                .day {
+                    font-weight: 600;
+                }
+                .range {
+
+                }
+            }
         }
 
     }

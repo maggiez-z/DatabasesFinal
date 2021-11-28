@@ -90,8 +90,21 @@
                     <div *ngIf="detailActiveMenuTab === 'Menu'">
                         <app-menu *ngFor="let menu of restDetail.menus" [menu]="menu"></app-menu>
                     </div>
-                    <div *ngIf="detailActiveMenuTab === 'Hours'">
-                        Hours
+                    <div *ngIf="detailActiveMenuTab === 'Hours'" class="hours-container">
+                        <label class="day">Monday</label>
+                        <label class="range">{{restDetail.Monday_From + ' - ' + restDetail.Monday_To}}</label>
+                        <label class="day">Tuesday</label>
+                        <label class="range">{{restDetail.Tuesday_From + ' - ' + restDetail.Tuesday_To}}</label>
+                        <label class="day">Wednesday</label>
+                        <label class="range">{{restDetail.Wednesday_From + ' - ' + restDetail.Wednesday_To}}</label>
+                        <label class="day">Thursday</label>
+                        <label class="range">{{restDetail.Thursday_From + ' - ' + restDetail.Thursday_To}}</label>
+                        <label class="day">Friday</label>
+                        <label class="range">{{restDetail.Friday_From + ' - ' + restDetail.Friday_To}}</label>
+                        <label class="day">Saturday</label>
+                        <label class="range">{{restDetail.Saturday_From + ' - ' + restDetail.Saturday_To}}</label>
+                        <label class="day">Sunday</label>
+                        <label class="range">{{restDetail.Sunday_From + ' - ' + restDetail.Sunday_To}}</label>
                     </div>
                     <div *ngIf="detailActiveMenuTab === 'Questions'">
                         Questions
