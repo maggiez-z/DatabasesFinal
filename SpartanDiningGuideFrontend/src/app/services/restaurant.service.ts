@@ -17,8 +17,20 @@ export class RestaurantService {
   }
 
   getRestaurants() {
-    return this.get('restaurants').then(res => {
-      return <Rest[]> res;
+    return this.get('restaurants').then(origRes => {
+      origRes.forEach((rest: any) => {
+        rest['menus'] = [];
+        this.get('getMenu/' + rest.restaurant_id).then(restRes => {
+          restRes.forEach((menu: any) => {
+            let menuObj = {type: menu.type, dishes:[]};
+            this.get('getDish/' + menu.menu_id).then(dishRes => {
+              menuObj['dishes'] = dishRes;
+            });
+            rest['menus'].push(menuObj);
+          });
+        })
+      });
+      return <Rest[]> origRes;
     })
   }
 
@@ -48,4 +60,5 @@ export interface Rest {
   Saturday_To: any;
   Sunday_From: any;
   Sunday_To: any;
+  menus: any[];
 }
