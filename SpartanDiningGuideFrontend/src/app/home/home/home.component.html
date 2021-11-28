@@ -5,26 +5,28 @@
 </div>
 <div class="home-body">
     <div *ngIf="viewRests" class="data-view">
-        <p-dataView [value]="restaurants" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="6" layout="list">
-            <ng-template pTemplate="header">Local Restaurants
-                <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
-                (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
-            </ng-template>
-            <ng-template let-restaurant pTemplate="listItem">
-                <div style="width: 100%;">
-                    <div class="rest-list-item">
-                        <div class="rest-list-detail">
-                            <div class="rest-name">{{restaurant.restaurant_name}}</div>
-                            <div class="rest-description">{{restaurant.cuisine[0].toUpperCase() + restaurant.cuisine.substring(1)}}</div>
-                            <i class="pi pi-phone rest-icon"></i><span class="rest-phone">{{restaurant.phone_number}}</span>
-                        </div>
-                        <div class="rest-list-action">
-                            <button pButton pRipple icon="pi pi-book" (click)="showRestDetail(restaurant)" label="View"></button>
+        <p-card>
+            <p-dataView [value]="restaurants" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="6" layout="list">
+                <ng-template pTemplate="header">Local Restaurants
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+                    (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+                </ng-template>
+                <ng-template let-restaurant pTemplate="listItem">
+                    <div style="width: 100%;">
+                        <div class="rest-list-item">
+                            <div class="rest-list-detail">
+                                <div class="rest-name">{{restaurant.restaurant_name}}</div>
+                                <div class="rest-description">{{restaurant.cuisine[0].toUpperCase() + restaurant.cuisine.substring(1)}}</div>
+                                <i class="pi pi-phone rest-icon"></i><span class="rest-phone">{{restaurant.phone_number}}</span>
+                            </div>
+                            <div class="rest-list-action">
+                                <button pButton pRipple icon="pi pi-book" (click)="showRestDetail(restaurant)" label="View"></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </ng-template>
-        </p-dataView>    
+                </ng-template>
+            </p-dataView>    
+        </p-card>
     </div>
     <div *ngIf="viewUser">
         <button pButton pRipple type="button" icon="pi pi-times" label="Return" (click)="showRestaurantList()" class="p-button-text p-button-lg"></button>
