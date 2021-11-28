@@ -296,7 +296,7 @@ router.post('/postdish', (req, res) => {
 
 router.get('/getDish/:menu_id', (req, res) => {
     db.all(
-      'SELECT d.dish_id, d.type FROM has_dish h, Dish d WHERE h.menu_id = ? AND h.dish_id = d.dish_id;',
+      'SELECT d.dish_id, d.dish_name, d.ingredients, d.calories, d.price FROM has_dish h, Dish d WHERE h.menu_id = ? AND h.dish_id = d.dish_id;',
       [req.params.menu_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
