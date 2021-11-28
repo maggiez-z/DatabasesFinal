@@ -10,12 +10,16 @@ import { InputTextModule } from 'primeng/inputtext';
 import {TabMenu, TabMenuModule} from 'primeng/tabmenu';
 import {MenuItem} from 'primeng/api';
 import {CardModule} from 'primeng/card';
+import { MenuComponent } from './menu/menu.component';
+import { DishComponent } from './dish/dish.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    MenuComponent,
+    DishComponent
   ],
   imports: [
     RouterModule.forChild([{ path: '', component: HomeComponent }]),

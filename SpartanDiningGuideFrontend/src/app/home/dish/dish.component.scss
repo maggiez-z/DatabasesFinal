@@ -1,0 +1,20 @@
+.dish {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    .name {
+        font-weight: 550;
+    }
+    .ingredients {
+
+    }
+    .calories {
+
+    }
+    .price-wrapper {
+        display: inline-flex;
+        .price {
+            padding-left: 1rem;
+        }
+    }
+}

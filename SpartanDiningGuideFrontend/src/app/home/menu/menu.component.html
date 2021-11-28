@@ -1,0 +1,4 @@
+<div class="menu">
+    <label>{{menu.type[0].toUpperCase() + menu.type.substring(1)}}</label>
+    <app-dish *ngFor="let dish of menu.dishes" [dish]="dish"></app-dish>
+</div>
