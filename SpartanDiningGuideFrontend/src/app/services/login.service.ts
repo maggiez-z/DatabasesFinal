@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  loggedIn: boolean = false;
+  loggedIn: boolean = true;
   failed: boolean = false;
 
   signInShow: boolean = false;

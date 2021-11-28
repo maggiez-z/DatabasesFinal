@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { LoginService } from 'src/app/services/login.service';
 import { Rest, RestaurantService } from 'src/app/services/restaurant.service';
 
@@ -23,6 +24,15 @@ export class HomeComponent implements OnInit {
   viewRestDetail: boolean = false;
 
   restDetail: any;
+
+  detailMenuItems: MenuItem[] = [
+    {label: 'Menu', icon: 'pi pi-fw pi-home', command: () => this.detailActiveMenuTab = "Menu"},
+    {label: 'Hours', icon: 'pi pi-fw pi-calendar', command: () => this.detailActiveMenuTab = "Hours"},
+    {label: 'Questions', icon: 'pi pi-fw pi-pencil', command: () => this.detailActiveMenuTab = "Questions"},
+    {label: 'Info', icon: 'pi pi-fw pi-file', command: () => this.detailActiveMenuTab = "Info"},
+  ];
+
+  detailActiveMenuTab: string = "Menu";
 
   constructor(
     public rs: RestaurantService,

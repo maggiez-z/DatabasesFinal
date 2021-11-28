@@ -67,3 +67,50 @@
 
     }
 }
+.rest-detail {
+    .detail-header {
+        display: flex;
+        align-items: flex-start;
+        .return {
+            margin: 8px;
+        }
+        label {
+            padding-top: 48px;
+            padding-bottom: 6px;
+            padding-left: 65px;
+            font-size: 74px;
+            font-weight: 700;
+        }
+    }
+    .header-under {
+        margin-left: 150px;
+        .header-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: baseline;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            i {
+                padding-right: 1.5rem;
+            }
+        }
+    }
+    .detail-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 48px;
+        .menu-header {
+            width: 430px;
+            margin-bottom: 32px;
+        }
+        .menu-container {
+            padding: 12px;
+            width: 70vw;
+            border: 1px solid rgb(168, 168, 168);
+            border-radius: 10px;
+        }
+
+    }
+}

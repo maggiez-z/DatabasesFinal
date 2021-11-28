@@ -5,13 +5,13 @@
 </div>
 <div class="home-body">
     <div *ngIf="viewRests" class="data-view">
-        <p-dataView [value]="restaurants" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="6">
+        <p-dataView [value]="restaurants" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="6" layout="list">
             <ng-template pTemplate="header">Local Restaurants
                 <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
                 (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
             </ng-template>
             <ng-template let-restaurant pTemplate="listItem">
-                <div class="p-col-12">
+                <div style="width: 100%;">
                     <div class="rest-list-item">
                         <div class="rest-list-detail">
                             <div class="rest-name">{{restaurant.restaurant_name}}</div>
@@ -57,7 +57,47 @@
             <button pButton pRipple type="button" label="Update" class="p-button-rounded p-button-lg submit"></button>
         </div>
     </div>
-    <div *ngIf="viewRestDetail">
-        <button pButton pRipple type="button" icon="pi pi-user" label="Return" (click)="showRestaurantList()" class="p-button-text p-button-lg"></button>
+    <div *ngIf="viewRestDetail" class="rest-detail">
+        <div class="detail-header">
+            <button pButton pRipple type="button" icon="pi pi-times" (click)="showRestaurantList(); detailActiveMenuTab = 'Menu'" class="p-button-warning p-button-lg return"></button>
+            <label>{{restDetail.restaurant_name}}</label>
+        </div>
+        <div class="header-under">
+            <div class="header-group" style="margin-bottom: 12px;">
+                {{restDetail.cuisine[0].toUpperCase() + restDetail.cuisine.substring(1)}}
+            </div>
+            <div class="header-group">
+                <i class="pi pi-map-marker"></i>
+                {{restDetail.address}}
+            </div>
+            <div class="header-group">
+                <i class="pi pi-phone"></i>
+                {{restDetail.phone_number}}
+            </div>
+            <div class="header-group">
+                <i class="pi pi-globe"></i>
+                {{restDetail.website}}
+            </div>
+        </div>
+        <div class="detail-menu">
+            <div class="menu-header">
+                <p-tabMenu [model]="detailMenuItems" [activeItem]="this.detailMenuItems[0]"></p-tabMenu>
+            </div>
+            <div class="menu-container">
+                <div *ngIf="detailActiveMenuTab === 'Menu'">
+                    Menu
+                </div>
+                <div *ngIf="detailActiveMenuTab === 'Hours'">
+                    Hours
+                </div>
+                <div *ngIf="detailActiveMenuTab === 'Questions'">
+                    Questions
+                </div>
+                <div *ngIf="detailActiveMenuTab === 'Info'">
+                    Info
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
