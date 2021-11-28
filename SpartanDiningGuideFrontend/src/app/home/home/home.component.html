@@ -7,9 +7,12 @@
     <div *ngIf="viewRests" class="data-view">
         <p-card>
             <p-dataView [value]="restaurants" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="6" layout="list">
-                <ng-template pTemplate="header">Local Restaurants
-                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
-                    (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+                <ng-template pTemplate="header">
+                    <div class="dv-header">
+                        Local Restaurants
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+                        (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+                    </div>
                 </ng-template>
                 <ng-template let-restaurant pTemplate="listItem">
                     <div style="width: 100%;">
@@ -109,8 +112,19 @@
                     <div *ngIf="detailActiveMenuTab === 'Questions'">
                         Questions
                     </div>
-                    <div *ngIf="detailActiveMenuTab === 'Info'">
-                        Info
+                    <div *ngIf="detailActiveMenuTab === 'Info'" class="parking-container">
+                        <label class="capacity">{{'Restaurant Capacity: '+ restDetail.capacity}}</label>
+                        <label class="chef">{{'Chef: '+ restDetail.chef}}</label>
+                        <label class="parking-header">Parking Locations</label>
+                        <div *ngFor="let parking of restDetail.parkings" class="indv-parking">
+                            <label class="p-address">{{parking.parking_address}}</label>
+                            <label class="p-capactiy">{{'Total Capacity: ' + parking.total_capacity}}</label>
+                            <label class="p-h-capacity">{{'Handicap Capacity: ' + parking.handicap_capacity}}</label>
+                            <div class="cost-wrapper">
+                                <i class="pi pi-dollar"></i>
+                                <label class="p-cost">{{parking.cost}}</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -372,7 +372,7 @@ router.post('/postparking', (req, res) => {
 
 router.get('/getParking/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT p.parking_id, p.type FROM has_parking h, Parking p WHERE h.restaurant_id = ? AND h.parking_id = p.parking_id;',
+      'SELECT p.parking_id, p.parking_address, p.total_capacity, p.handicap_capacity, p.cost FROM has_parking h, Parking p WHERE h.restaurant_id = ? AND h.parking_id = p.parking_id;',
       [req.params.restaurant_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);

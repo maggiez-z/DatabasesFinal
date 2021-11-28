@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     {label: 'Menu', icon: 'pi pi-fw pi-home', command: () => this.detailActiveMenuTab = "Menu"},
     {label: 'Hours', icon: 'pi pi-fw pi-calendar', command: () => this.detailActiveMenuTab = "Hours"},
     {label: 'Questions', icon: 'pi pi-fw pi-pencil', command: () => this.detailActiveMenuTab = "Questions"},
-    {label: 'Info', icon: 'pi pi-fw pi-file', command: () => this.detailActiveMenuTab = "Info"},
+    {label: 'Parking and Accessibility', icon: 'pi pi-fw pi-file', command: () => this.detailActiveMenuTab = "Info"},
   ];
 
   detailActiveMenuTab: string = "Menu";
