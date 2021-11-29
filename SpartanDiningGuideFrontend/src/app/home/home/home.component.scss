@@ -29,21 +29,56 @@
             justify-content: space-between;
         }
     }
-    .input-wrapper {
+    .user-container {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        .user-name-input {
-            margin-bottom: 48px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .user-name-input {
+                margin-bottom: 48px;
+            }
+            .submit {
+                margin-top: 36px;
+                margin-bottom: 36px;
+            }
+            .header-label {
+                font-size: 36px;
+                color: rgb(0, 119, 255);
+                margin-bottom: 36px;
+            }
         }
-        .submit {
-            margin-top: 36px;
-            margin-bottom: 36px;
-        }
-        .header-label {
-            font-size: 36px;
-            color: rgb(0, 119, 255);
-            margin-bottom: 36px;
+        .user-questions {
+            .header {
+                font-size: 36px;
+                color: rgb(0, 119, 255);
+            }
+            .question {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                .user-asking {
+                    font-weight: 300;
+                    font-size: 0.8rem;
+                    padding-bottom: 0.2rem;
+                }
+                .asked-question {
+                    font-weight: 550;
+                    font-size: 1.3rem;
+                }
+                .answer {
+                    padding: 0.75rem;
+                    padding-bottom: 0.2rem;
+                }
+                .user-answering {
+                    padding-left: 0.9rem;
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                    padding-bottom: 1rem;
+                }
+            }
         }
     }
 }
@@ -129,6 +164,39 @@
                 }
                 .range {
 
+                }
+            }
+            .questions-container {
+                display: flex;
+                flex-direction: column;
+                .questions-header {
+                    font-weight: 600;
+                    font-size: 2rem;
+                    padding: 0.5rem;
+                }
+                .question {
+                    padding: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    .user-asking {
+                        font-weight: 300;
+                        font-size: 0.8rem;
+                        padding-bottom: 0.2rem;
+                    }
+                    .asked-question {
+                        font-weight: 550;
+                        font-size: 1.3rem;
+                    }
+                    .answer {
+                        padding: 0.75rem;
+                        padding-bottom: 0.2rem;
+                    }
+                    .user-answering {
+                        padding-left: 0.9rem;
+                        font-size: 0.8rem;
+                        font-weight: 300;
+                        padding-bottom: 1rem;
+                    }
                 }
             }
             .parking-container {

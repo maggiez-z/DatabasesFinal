@@ -33,33 +33,43 @@
     </div>
     <div *ngIf="viewUser">
         <button pButton pRipple type="button" icon="pi pi-times" label="Return" (click)="showRestaurantList()" class="p-button-text p-button-lg"></button>
-        <div class="input-wrapper">
-            <label class="header-label">Update your information below.</label>
-            <span class="p-input-icon-left user-name-input">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="ls.currentUser.user_name" placeholder="Username">         
-            </span>
-            <span class="p-input-icon-left user-name-input">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="ls.currentUser.email" placeholder="Email">         
-            </span>
-            <span class="p-input-icon-left user-name-input">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="ls.currentUser.password" placeholder="Password">         
-            </span>
-            <span class="p-input-icon-left user-name-input">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="ls.currentUser.address" placeholder="Address">         
-            </span>
-            <span class="p-input-icon-left user-name-input">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="ls.currentUser.phone_number" placeholder="Phone Number">         
-            </span>
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText [(ngModel)]="ls.currentUser.favorite_food" placeholder="Favorite Food">         
-            </span>
-            <button pButton pRipple type="button" label="Update" class="p-button-rounded p-button-lg submit"></button>
+        <div class="user-container">
+            <div class="input-wrapper">
+                <label class="header-label">Update your information below.</label>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.user_name" placeholder="Username">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.email" placeholder="Email">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.password" placeholder="Password">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.address" placeholder="Address">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.phone_number" placeholder="Phone Number">         
+                </span>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.favorite_food" placeholder="Favorite Food">         
+                </span>
+                <button pButton pRipple type="button" label="Update" class="p-button-rounded p-button-lg submit"></button>
+            </div>
+            <div class="user-questions">
+                <label class="header">Your Questions</label>
+                <div class="question">
+                    <label class="user-asking">You asked:</label>
+                    <label class="asked-question">Do they accept phone orders?</label>
+                    <label class="user-answering">At Indian Flame</label>
+                </div>
+            </div>
         </div>
     </div>
     <div *ngIf="viewRestDetail" class="rest-detail">
@@ -109,8 +119,17 @@
                         <label class="day">Sunday</label>
                         <label class="range">{{restDetail.Sunday_From + ' - ' + restDetail.Sunday_To}}</label>
                     </div>
-                    <div *ngIf="detailActiveMenuTab === 'Questions'">
-                        Questions
+                    <div *ngIf="detailActiveMenuTab === 'Questions'" class="questions-container">
+                        <label class="questions-header">Ask Question</label>
+                        <input type="text" style="margin: 1rem;" pInputText placeholder="Ask question...">
+                        <label class="questions-header">Questions</label>
+                        <div class="question">
+                            <label class="user-asking">karenji asked:</label>
+                            <label class="asked-question">Do they have sauces available?</label>
+                            <label class="answer">Yes they have a bunch</label>
+                            <label class="user-answering">maggiebutterfield</label>
+                            <input type="text" pInputText placeholder="Answer question...">
+                        </div>
                     </div>
                     <div *ngIf="detailActiveMenuTab === 'Ratings'">
                         Ratings
