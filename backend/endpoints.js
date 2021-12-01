@@ -332,10 +332,10 @@ router.post('/postrating', (req, res) => {
     });
 });
 
-router.get('/getRating/:user_id', (req, res) => {
+router.get('/getRating/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT w.rating_id, w.type FROM Rating_restaurant r, Write_rating w WHERE r.user_id = ? AND r.rating_id = w.rating_id AND r.restaurant_id = w.restaurant_id;',
-      [req.params.user_id],
+      'SELECT w.user_id, w.rating_id, w.comfortability, w.food_quality, w.service, w.cleanliness, w.comment FROM Rating_restaurant r, Write_rating w WHERE r.restaurant_id = ? AND r.rating_id = w.rating_id;',
+      [req.params.restaurant_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
@@ -408,14 +408,24 @@ router.post('/postquestion', (req, res) => {
     });
 });
 
-router.get('/getQuestion/:user_id', (req, res) => {
+router.get('/getQuestionByUser/:user_id', (req, res) => {
     db.all(
-      'SELECT q.question_id, q.type FROM Restaurant_question r, Ask_question q WHERE r.user_id = ? AND r.question_id = q.question_id AND r.restaurant_id = q.restaurant_id;',
+      'SELECT q.question_id, q.question, q.time_asked FROM Restaurant_question r, Ask_question q WHERE q.user_id = ? AND r.question_id = q.question_id;',
       [req.params.user_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }
     )
+});
+
+router.get('/getQuestionByRestaurant/:restaurant_id', (req, res) => {
+  db.all(
+    'SELECT q.question_id, q.question, q.time_asked FROM Restaurant_question r, Ask_question q WHERE r.restaurant_id = ? AND r.question_id = q.question_id;',
+    [req.params.restaurant_id],
+    function(err, rows) {
+      err ? res.send(err) : res.send(rows);
+    }
+  )
 });
 
 //Answer table

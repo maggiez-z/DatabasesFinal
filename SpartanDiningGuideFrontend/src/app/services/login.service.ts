@@ -52,7 +52,7 @@ export class LoginService {
       if (res) {
         userObj['user_id'] = res[0]['max'] + 1;
         console.log(userObj);
-        this.http.post('http://localhost:8000/postuser',userObj).toPromise().then(res => {
+        this.http.post('http://localhost:8000/postuser',userObj).toPromise().then(() => {
           this.loggedIn = true;
           this.failed = false;  
           this.router.navigate(['/home']);
