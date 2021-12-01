@@ -456,10 +456,10 @@ router.post('/postanswer', (req, res) => {
     });
 });
 
-router.get('/getAnswer/:user_id', (req, res) => {
+router.get('/getAnswer/:question_id', (req, res) => {
     db.all(
-      'SELECT a.answer_id, a.type FROM has_answer h, Give_answer a WHERE h.user_id = ? AND h.answer_id = a.answer_id AND h.question_id = a.question_id;',
-      [req.params.user_id],
+      'SELECT a.user_id, a.answer_id, a.answer, a.time_answered FROM has_answer h, Give_answer a WHERE h.question_id = ? AND h.answer_id = a.answer_id;',
+      [req.params.question_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
       }

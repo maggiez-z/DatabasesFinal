@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
 
-  loggedIn: boolean = true;
+  loggedIn: boolean = false;
   failed: boolean = false;
 
   signInShow: boolean = false;
@@ -36,6 +36,15 @@ export class LoginService {
         if (res.length) {
           this.loggedIn = true;
           this.currentUser = res[0];
+          this.get('getQuestionByUser/' + this.currentUser.user_id).then(qRes => {
+            this.currentUser['questions'] = [];
+            qRes.forEach((question: any) => {
+              this.get('getAnswer/' + question.question_id).then(aRes => {
+                question['answers'] = aRes;
+                this.currentUser.questions.push(question);
+              });
+            });
+          });
           this.failed = false;
           this.router.navigate(['/home']);
           resolve(res);

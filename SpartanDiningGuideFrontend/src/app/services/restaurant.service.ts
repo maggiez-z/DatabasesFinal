@@ -35,6 +35,15 @@ export class RestaurantService {
             rest.parkings.push(parking);
           });
         });
+        this.get('getQuestionByRestaurant/' + rest.restaurant_id).then(qRes => {
+          rest['questions'] = [];
+          qRes.forEach((question: any) => {
+            this.get('getAnswer/' + question.question_id).then(aRes => {
+              question['answers'] = aRes;
+              rest.questions.push(question);
+            });
+          });
+        });
       });
       return <Rest[]> origRes;
     })
