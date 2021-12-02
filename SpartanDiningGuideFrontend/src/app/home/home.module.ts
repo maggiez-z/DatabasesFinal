@@ -15,6 +15,7 @@ import { DishComponent } from './dish/dish.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { RatingComponent } from './rating/rating.component';
+import { RatingModule } from 'primeng/rating';
 
 
 
@@ -35,6 +36,7 @@ import { RatingComponent } from './rating/rating.component';
     DropdownModule,
     FormsModule,
     InputTextModule,
+    RatingModule,
     TabMenuModule,
     CardModule,
     CommonModule

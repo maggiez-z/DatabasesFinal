@@ -326,7 +326,15 @@ router.post('/postrating', (req, res) => {
         if (err){
           res.send(err);
         } 
-        else { 
+    });
+    db.run(
+      'INSERT INTO Rating_restaurant (user_id, rating_id, restaurant_id) VALUES (?, ?, ?);',
+      [req.body.user_id, req.body.rating_id, req.body.restaurant_id],
+      function(err) {
+        if (err){
+          res.send(err);
+        } 
+        else {
           res.send(this);
         }
     });
@@ -334,7 +342,7 @@ router.post('/postrating', (req, res) => {
 
 router.get('/getRating/:restaurant_id', (req, res) => {
     db.all(
-      'SELECT w.user_id, w.rating_id, w.comfortability, w.food_quality, w.service, w.cleanliness, w.comment FROM Rating_restaurant r, Write_rating w WHERE r.restaurant_id = ? AND r.rating_id = w.rating_id;',
+      'SELECT u.user_name, w.rating_id, w.comfortability, w.food_quality, w.service, w.cleanliness, w.comment FROM Rating_restaurant r, Write_rating w, User u WHERE r.restaurant_id = ? AND r.rating_id = w.rating_id AND w.user_id = u.user_id;',
       [req.params.restaurant_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -491,6 +499,15 @@ router.get('/highestAnswerId', (req, res) => {
 router.get('/highestQuestionId', (req, res) => {
   db.all(
     'SELECT MAX(question_id) as max FROM Restaurant_question;',
+    function(err, rows) {
+      err ? res.send(err) : res.send(rows);
+    }
+  )
+});
+
+router.get('/highestRatingId', (req, res) => {
+  db.all(
+    'SELECT MAX(rating_id) as max FROM Rating_restaurant;',
     function(err, rows) {
       err ? res.send(err) : res.send(rows);
     }

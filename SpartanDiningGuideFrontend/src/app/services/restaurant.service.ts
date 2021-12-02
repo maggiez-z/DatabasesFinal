@@ -45,9 +45,7 @@ export class RestaurantService {
 
   getRestaurantDetail(rest: any) {
     this.get('getRating/' + rest.restaurant_id).then(rateRes => {
-      rateRes.forEach((rating: any) => {
-        rest.ratings.push(rating);
-      });
+      rest.ratings = rateRes;
     });
     this.get('getQuestionByRestaurant/' + rest.restaurant_id).then(qRes => {
       rest['questions'] = [];
@@ -79,6 +77,16 @@ export class RestaurantService {
       questionObj['question_id'] = stringNum + 1;
       console.log(questionObj);
       this.http.post("http://localhost:8000/postquestion", questionObj).toPromise().then((res: any) => {
+        console.log(res);
+      });
+    })
+  }
+
+  postRating(ratingObj: any) {
+    this.get('highestRatingId').then(res => {
+      let stringNum = res[0]['max'];
+      ratingObj['rating_id'] = stringNum + 1;
+      this.http.post("http://localhost:8000/postrating", ratingObj).toPromise().then((res: any) => {
         console.log(res);
       });
     })

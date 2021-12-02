@@ -123,8 +123,26 @@
                         <label class="questions-header">Questions</label>
                         <app-question *ngFor="let question of restDetail.questions" [question]="question"></app-question>
                     </div>
-                    <div *ngIf="detailActiveMenuTab === 'Ratings'">
-                        Ratings
+                    <div *ngIf="detailActiveMenuTab === 'Ratings'" class="ratings-container">
+                        <div class="list-ratings">
+                            <label class="ratings-header">Reviews</label>
+                            <app-rating *ngFor="let rating of restDetail.ratings" [rating]="rating"></app-rating>
+                        </div>
+                        <div class="write-rating">
+                            <label class="ratings-header">Submit a Review</label>
+                            <label class="cat-label">Comfort</label>
+                            <p-rating [(ngModel)]="comfortRating"></p-rating>
+                            <label class="cat-label">Food Quality</label>
+                            <p-rating [(ngModel)]="fqRating"></p-rating>
+                            <label class="cat-label">Service</label>
+                            <p-rating [(ngModel)]="serviceRating"></p-rating>
+                            <label class="cat-label">Cleanliness</label>
+                            <p-rating [(ngModel)]="cleanRating"></p-rating>
+                            <div class="p-inputgroup" style="margin: 1rem; width: 400px;">
+                                <input type="text"pInputText [(ngModel)]="commentString" placeholder="Comment...">
+                                <button type="button" pButton pRipple icon="pi pi-comment" (click)="postRating()"></button>
+                            </div>
+                        </div>
                     </div>
                     <div *ngIf="detailActiveMenuTab === 'Info'" class="parking-container">
                         <label class="capacity">{{'Restaurant Capacity: '+ restDetail.capacity}}</label>

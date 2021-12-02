@@ -36,6 +36,12 @@ export class HomeComponent implements OnInit {
   detailActiveMenuTab: string = "Menu";
   questionString: string = "";
 
+  comfortRating: number = 0;
+  fqRating: number = 0;
+  cleanRating: number = 0;
+  serviceRating:number = 0;
+  commentString: string = "";
+
   constructor(
     public rs: RestaurantService,
     public ls: LoginService
@@ -88,6 +94,16 @@ export class HomeComponent implements OnInit {
       this.rs.postQuestion(this.questionString, this.restDetail.restaurant_id);
       this.questionString = "";
     }
+  }
+
+  postRating() {
+    let ratingObj = {comfortability: this.comfortRating, service: this.serviceRating, user_id: this.ls.currentUser.user_id, restaurant_id: this.restDetail.restaurant_id, rating_id: 0, food_quality: this.fqRating, cleanliness: this.cleanRating, comment: this.commentString};
+    this.rs.postRating(ratingObj);
+    this.comfortRating = 0;
+    this.fqRating = 0;
+    this.cleanRating = 0;
+    this.serviceRating = 0;
+    this.commentString = "";
   }
 
 }

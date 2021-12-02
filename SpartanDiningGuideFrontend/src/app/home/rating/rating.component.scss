@@ -1,0 +1,25 @@
+.write-rating {
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem;
+    .ratings-header {
+        font-weight: 600;
+        font-size: 2rem;
+        padding: 0.5rem;
+    }
+    .cat-label {
+        padding: 0.3rem;
+        padding-left: 0.1rem;
+        font-weight: 525;
+    }
+    .comment {
+        padding-top: 0;
+        padding: 0.2rem;
+        font-style: italic;
+    }
+    .from {
+        padding: 0.2rem;
+        font-weight: 400;
+        font-size: 0.75rem;
+    }
+}

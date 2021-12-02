@@ -49,23 +49,23 @@ INSERT INTO Has_dish(menu_id, dish_id) VALUES
   (000004, 000004),
   (000005, 000005);
 
-INSERT INTO Write_rating (user_id, rating_id, comfortability, food_quality, service, cleanliness, comment) VALUES
-  (000001, 000001, 4, 4, 4, 4, 'great food'),
-  (000002, 000002, 1, 1, 1, 1, 'it sucks'),
-  (000003, 000003, 4, 4, 4, 4, 'great food'),
-  (000004, 000004, 4, 4, 4, 4, 'great food'),
-  (000005, 000005, 4, 4, 4, 4, 'great food'),
-  (000006, 000006, 4, 4, 4, 4, 'great food'),
-  (000007, 000007, 4, 4, 4, 4, 'great food');
+-- INSERT INTO Write_rating (user_id, rating_id, comfortability, food_quality, service, cleanliness, comment) VALUES
+--   (000001, 000001, 4, 4, 4, 4, 'great food'),
+--   (000002, 000002, 1, 1, 1, 1, 'it sucks'),
+--   (000003, 000003, 4, 4, 4, 4, 'great food'),
+--   (000004, 000004, 4, 4, 4, 4, 'great food'),
+--   (000005, 000005, 4, 4, 4, 4, 'great food'),
+--   (000006, 000006, 4, 4, 4, 4, 'great food'),
+--   (000007, 000007, 4, 4, 4, 4, 'great food');
 
-INSERT INTO Rating_restaurant (user_id, rating_id, restaurant_id) VALUES
-  (000001, 000001, 000001),
-  (000002, 000002, 000002),
-  (000003, 000003, 000003),
-  (000004, 000004, 000004),
-  (000005, 000005, 000005),
-  (000006, 000006, 000006),
-  (000007, 000007, 000007);
+-- INSERT INTO Rating_restaurant (user_id, rating_id, restaurant_id) VALUES
+--   (000001, 000001, 000001),
+--   (000002, 000002, 000002),
+--   (000003, 000003, 000003),
+--   (000004, 000004, 000004),
+--   (000005, 000005, 000005),
+--   (000006, 000006, 000006),
+--   (000007, 000007, 000007);
 
 INSERT INTO Parking (parking_id, parking_address, total_capacity, handicap_capacity, cost) VALUES
   (000001, '1750 Ansel RD', 100, 20, 5),
