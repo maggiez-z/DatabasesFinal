@@ -21,6 +21,7 @@ export class RestaurantService {
       origRes.forEach((rest: any) => {
         rest['menus'] = [];
         rest['parkings'] = [];
+        rest['ratings'] = [];
         this.get('getMenu/' + rest.restaurant_id).then(restRes => {
           restRes.forEach((menu: any) => {
             let menuObj = {type: menu.type, dishes:[]};
@@ -33,6 +34,11 @@ export class RestaurantService {
         this.get('getParking/' + rest.restaurant_id).then(parkRes => {
           parkRes.forEach((parking: any) => {
             rest.parkings.push(parking);
+          });
+        });
+        this.get('getRating/' + rest.restaurant_id).then(rateRes => {
+          rateRes.forEach((rating: any) => {
+            rest.ratings.push(rating);
           });
         });
         this.get('getQuestionByRestaurant/' + rest.restaurant_id).then(qRes => {

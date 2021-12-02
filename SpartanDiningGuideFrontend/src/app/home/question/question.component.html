@@ -1,0 +1,6 @@
+<div class="question">
+    <label class="user-asking">{{question.user_id}}</label>
+    <label class="asked-question">{{question.question}}</label>
+    <app-answer *ngFor="let answer of question.answers" [answer]="answer"></app-answer>
+    <input type="text" pInputText placeholder="Answer question...">
+</div>

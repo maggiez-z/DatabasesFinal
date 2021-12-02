@@ -123,13 +123,7 @@
                         <label class="questions-header">Ask Question</label>
                         <input type="text" style="margin: 1rem;" pInputText placeholder="Ask question...">
                         <label class="questions-header">Questions</label>
-                        <div class="question">
-                            <label class="user-asking">karenji asked:</label>
-                            <label class="asked-question">Do they have sauces available?</label>
-                            <label class="answer">Yes they have a bunch</label>
-                            <label class="user-answering">maggiebutterfield</label>
-                            <input type="text" pInputText placeholder="Answer question...">
-                        </div>
+                        <app-question *ngFor="let question of restDetail.questions" [question]="question"></app-question>
                     </div>
                     <div *ngIf="detailActiveMenuTab === 'Ratings'">
                         Ratings

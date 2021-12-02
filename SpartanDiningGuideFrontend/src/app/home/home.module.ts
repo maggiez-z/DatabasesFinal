@@ -12,6 +12,9 @@ import {MenuItem} from 'primeng/api';
 import {CardModule} from 'primeng/card';
 import { MenuComponent } from './menu/menu.component';
 import { DishComponent } from './dish/dish.component';
+import { QuestionComponent } from './question/question.component';
+import { AnswerComponent } from './answer/answer.component';
+import { RatingComponent } from './rating/rating.component';
 
 
 
@@ -19,7 +22,10 @@ import { DishComponent } from './dish/dish.component';
   declarations: [
     HomeComponent,
     MenuComponent,
-    DishComponent
+    DishComponent,
+    QuestionComponent,
+    AnswerComponent,
+    RatingComponent
   ],
   imports: [
     RouterModule.forChild([{ path: '', component: HomeComponent }]),

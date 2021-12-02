@@ -420,7 +420,7 @@ router.get('/getQuestionByUser/:user_id', (req, res) => {
 
 router.get('/getQuestionByRestaurant/:restaurant_id', (req, res) => {
   db.all(
-    'SELECT q.question_id, q.question, q.time_asked FROM Restaurant_question r, Ask_question q WHERE r.restaurant_id = ? AND r.question_id = q.question_id;',
+    'SELECT q.question_id, q.question, q.time_asked, u.user_name FROM Restaurant_question r, Ask_question q, User u WHERE r.restaurant_id = ? AND r.question_id = q.question_id AND q.user_id = u.user_id;',
     [req.params.restaurant_id],
     function(err, rows) {
       err ? res.send(err) : res.send(rows);
@@ -458,7 +458,7 @@ router.post('/postanswer', (req, res) => {
 
 router.get('/getAnswer/:question_id', (req, res) => {
     db.all(
-      'SELECT a.user_id, a.answer_id, a.answer, a.time_answered FROM has_answer h, Give_answer a WHERE h.question_id = ? AND h.answer_id = a.answer_id;',
+      'SELECT u.user_name, a.answer_id, a.answer, a.time_answered FROM has_answer h, Give_answer a, User u WHERE h.question_id = ? AND h.answer_id = a.answer_id AND a.user_id = u.user_id;',
       [req.params.question_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
