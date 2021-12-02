@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class RestaurantService {
 
   constructor(
     private http: HttpClient,
-    public router: Router
+    public router: Router,
+    public ls: LoginService
   ) { }
 
   get(table: string): Promise<any> {
@@ -36,22 +38,49 @@ export class RestaurantService {
             rest.parkings.push(parking);
           });
         });
-        this.get('getRating/' + rest.restaurant_id).then(rateRes => {
-          rateRes.forEach((rating: any) => {
-            rest.ratings.push(rating);
-          });
-        });
-        this.get('getQuestionByRestaurant/' + rest.restaurant_id).then(qRes => {
-          rest['questions'] = [];
-          qRes.forEach((question: any) => {
-            this.get('getAnswer/' + question.question_id).then(aRes => {
-              question['answers'] = aRes;
-              rest.questions.push(question);
-            });
-          });
-        });
       });
       return <Rest[]> origRes;
+    })
+  }
+
+  getRestaurantDetail(rest: any) {
+    this.get('getRating/' + rest.restaurant_id).then(rateRes => {
+      rateRes.forEach((rating: any) => {
+        rest.ratings.push(rating);
+      });
+    });
+    this.get('getQuestionByRestaurant/' + rest.restaurant_id).then(qRes => {
+      rest['questions'] = [];
+      qRes.forEach((question: any) => {
+        this.get('getAnswer/' + question.question_id).then(aRes => {
+          question['answers'] = aRes;
+          rest.questions.push(question);
+        });
+      });
+    });
+  }
+
+  postAnswer(answer: string, questionId: number) {
+    let answerObj = {answer: answer, question_id: questionId, user_id: this.ls.currentUser.user_id, time_answered: new Date().toDateString(), answer_id: 0}
+    this.get('highestAnswerId').then(res => {
+      let stringNum = res[0]['max'];
+      answerObj['answer_id'] = stringNum + 1;
+      console.log(answerObj);
+      this.http.post("http://localhost:8000/postanswer", answerObj).toPromise().then((res: any) => {
+        console.log(res);
+      });
+    })
+  }
+
+  postQuestion(question: string, restaurant_id: number) {
+    let questionObj = {question: question, question_id: 0, user_id: this.ls.currentUser.user_id, time_asked: new Date().toDateString(), restaurant_id: restaurant_id}
+    this.get('highestQuestionId').then(res => {
+      let stringNum = res[0]['max'];
+      questionObj['question_id'] = stringNum + 1;
+      console.log(questionObj);
+      this.http.post("http://localhost:8000/postquestion", questionObj).toPromise().then((res: any) => {
+        console.log(res);
+      });
     })
   }
 

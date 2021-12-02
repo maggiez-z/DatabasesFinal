@@ -63,12 +63,7 @@
                 <button pButton pRipple type="button" label="Update" class="p-button-rounded p-button-lg submit"></button>
             </div>
             <div class="user-questions">
-                <label class="header">Your Questions</label>
-                <div class="question">
-                    <label class="user-asking">You asked:</label>
-                    <label class="asked-question">Do they accept phone orders?</label>
-                    <label class="user-answering">At Indian Flame</label>
-                </div>
+                <app-question *ngFor="let question of ls.currentUser.questions" [question]="question" [userQuest]="true"></app-question>
             </div>
         </div>
     </div>
@@ -121,7 +116,10 @@
                     </div>
                     <div *ngIf="detailActiveMenuTab === 'Questions'" class="questions-container">
                         <label class="questions-header">Ask Question</label>
-                        <input type="text" style="margin: 1rem;" pInputText placeholder="Ask question...">
+                        <div class="p-inputgroup" style="margin: 1rem; width: 900px;">
+                            <input type="text"pInputText [(ngModel)]="questionString" placeholder="Ask question...">
+                            <button type="button" pButton pRipple icon="pi pi-question" (click)="postQuestion()"></button>
+                        </div>
                         <label class="questions-header">Questions</label>
                         <app-question *ngFor="let question of restDetail.questions" [question]="question"></app-question>
                     </div>

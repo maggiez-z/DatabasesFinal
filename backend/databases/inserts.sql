@@ -90,18 +90,18 @@ INSERT INTO Restaurant_question (user_id, question_id, restaurant_id) VALUES
   (000004, 000004, 000004),
   (000005, 000005, 000005);
 
-INSERT INTO Give_answer (user_id, answer_id, answer, time_answered) VALUES
-  (1, 000001, 'Worst restaurant', 'Oct 2'),
-  (1, 000002, 'Not quiet', 'Oct 5'),
-  (1, 000003, 'Service is good', 'Oct 6'),
-  (1, 000001, 'No vegan food', 'Oct 7');
+-- INSERT INTO Give_answer (user_id, answer_id, answer, time_answered) VALUES
+--   (1, 000001, 'Worst restaurant', 'Oct 2'),
+--   (1, 000002, 'Not quiet', 'Oct 5'),
+--   (1, 000003, 'Service is good', 'Oct 6'),
+--   (1, 000001, 'No vegan food', 'Oct 7');
 
-INSERT INTO Has_answer (user_id , answer_id, question_id) VALUES
-  (000001, 000001, 000001),
-  (000002, 000002, 000002),
-  (000003, 000003, 000003),
-  (000004, 000004, 000004),
-  (000005, 000005, 000005);
+-- INSERT INTO Has_answer (user_id , answer_id, question_id) VALUES
+--   (000001, 000001, 000001),
+--   (000002, 000002, 000002),
+--   (000003, 000003, 000003),
+--   (000004, 000004, 000004),
+--   (000005, 000005, 000005);
 
 
 INSERT INTO Has_Parking(restaurant_id, parking_id) VALUES

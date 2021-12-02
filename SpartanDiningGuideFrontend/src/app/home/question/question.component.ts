@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 
 @Component({
   selector: 'app-question',
@@ -11,9 +12,20 @@ export class QuestionComponent implements OnInit {
 
   @Input() userQuest: boolean = false;
 
-  constructor() { }
+  answerString: string = "";
+
+  constructor(
+    public rs: RestaurantService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  postAnswer() {
+    if (this.answerString !== "") {
+      this.rs.postAnswer(this.answerString, this.question.question_id);
+      this.answerString = "";
+    }
   }
 
 }

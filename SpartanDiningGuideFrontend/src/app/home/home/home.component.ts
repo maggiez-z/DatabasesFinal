@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   ];
 
   detailActiveMenuTab: string = "Menu";
+  questionString: string = "";
 
   constructor(
     public rs: RestaurantService,
@@ -56,6 +57,7 @@ export class HomeComponent implements OnInit {
 
   showRestDetail(event: any) {
     console.log(event);
+    this.rs.getRestaurantDetail(event);
     this.restDetail = event;
     this.viewUser = false;
     this.viewRests = false;
@@ -79,6 +81,13 @@ export class HomeComponent implements OnInit {
         this.sortOrder = 1;
         this.sortField = value;
     }
-}
+  }
+
+  postQuestion() {
+    if (this.questionString !== "") {
+      this.rs.postQuestion(this.questionString, this.restDetail.restaurant_id);
+      this.questionString = "";
+    }
+  }
 
 }

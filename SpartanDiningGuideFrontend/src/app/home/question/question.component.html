@@ -1,6 +1,15 @@
 <div class="question">
-    <label class="user-asking">{{question.user_id}}</label>
+    <label *ngIf="!userQuest" class="user-asking">{{'Asked by: ' + question.user_name}}</label>
+    <label *ngIf="userQuest" class="user-asking">{{'Asked for: ' + question.restaurant_name}}</label>
     <label class="asked-question">{{question.question}}</label>
-    <app-answer *ngFor="let answer of question.answers" [answer]="answer"></app-answer>
-    <input type="text" pInputText placeholder="Answer question...">
+    <div class="answers-container">
+        <app-answer *ngFor="let answer of question.answers" [answer]="answer"></app-answer>
+        <div *ngIf="question.answers.length === 0" class="no-answer">
+            No Answers
+        </div>
+    </div>
+    <div *ngIf="!userQuest" class="p-inputgroup answer-group">
+        <input type="text" pInputText [(ngModel)]="answerString" placeholder="Answer question...">
+        <button type="button" pButton pRipple icon="pi pi-comment" (click)="postAnswer()"></button>
+    </div>
 </div>

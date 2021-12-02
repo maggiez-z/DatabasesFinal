@@ -396,21 +396,26 @@ router.get('/questions', (req, res) => {
 
 router.post('/postquestion', (req, res) => {
     db.run(
-      'INSERT INTO Ask_question (question_id, question, time_asked) VALUES (?, ?, ?);',
-      [req.body.question_id, req.body.question, req.body.time_asked],
+      'INSERT INTO Ask_question (user_id, question_id, question, time_asked) VALUES (?, ?, ?, ?);',
+      [req.body.user_id, req.body.question_id, req.body.question, req.body.time_asked],
       function(err) {
         if (err){
           res.send(err);
         } 
-        else { 
-          res.send(this);
-        }
+    });
+    db.run(
+      'INSERT INTO Restaurant_question (user_id, question_id, restaurant_id) VALUES (?, ?, ?);',
+      [req.body.user_id, req.body.question_id, req.body.restaurant_id],
+      function(err) {
+        if (err){
+          res.send(err);
+        } 
     });
 });
 
 router.get('/getQuestionByUser/:user_id', (req, res) => {
     db.all(
-      'SELECT q.question_id, q.question, q.time_asked FROM Restaurant_question r, Ask_question q WHERE q.user_id = ? AND r.question_id = q.question_id;',
+      'SELECT q.question_id, q.question, q.time_asked, rest.restaurant_name FROM Restaurant_question r, Ask_question q, Restaurant rest WHERE q.user_id = ? AND r.question_id = q.question_id AND rest.restaurant_id = r.restaurant_id;',
       [req.params.user_id],
       function(err, rows) {
         err ? res.send(err) : res.send(rows);
@@ -444,8 +449,16 @@ router.get('/answers', (req, res) => {
 
 router.post('/postanswer', (req, res) => {
     db.run(
-      'INSERT INTO Give_answer (answer_id, answer, time_answered) VALUES (?, ?, ?);',
-      [req.body.answer_id, req.body.answer, req.body.time_answered],
+      'INSERT INTO Give_answer (user_id, answer_id, answer, time_answered) VALUES (?, ?, ?, ?);',
+      [req.body.user_id, req.body.answer_id, req.body.answer, req.body.time_answered],
+      function(err) {
+        if (err){
+          res.send(err);
+        } 
+    });
+    db.run(
+      'INSERT INTO Has_answer (user_id, answer_id, question_id) VALUES (?, ?, ?);',
+      [req.body.user_id, req.body.answer_id, req.body.question_id],
       function(err) {
         if (err){
           res.send(err);
@@ -464,6 +477,24 @@ router.get('/getAnswer/:question_id', (req, res) => {
         err ? res.send(err) : res.send(rows);
       }
     )
+});
+
+router.get('/highestAnswerId', (req, res) => {
+  db.all(
+    'SELECT MAX(answer_id) as max FROM Give_answer;',
+    function(err, rows) {
+      err ? res.send(err) : res.send(rows);
+    }
+  )
+});
+
+router.get('/highestQuestionId', (req, res) => {
+  db.all(
+    'SELECT MAX(question_id) as max FROM Restaurant_question;',
+    function(err, rows) {
+      err ? res.send(err) : res.send(rows);
+    }
+  )
 });
 
 module.exports = { router, db };
