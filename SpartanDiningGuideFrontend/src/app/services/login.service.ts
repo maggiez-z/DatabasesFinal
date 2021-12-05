@@ -64,7 +64,9 @@ export class LoginService {
         this.http.post('http://localhost:8000/postuser',userObj).toPromise().then(() => {
           this.loggedIn = true;
           this.failed = false;  
-          this.router.navigate(['/home']);
+          //this.router.navigate(['/home']);
+       }).then(() => {
+         this.login(userObj.user_name, userObj.password);
        });
       }
       else {
