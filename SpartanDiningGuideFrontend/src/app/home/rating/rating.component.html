@@ -1,0 +1,13 @@
+<div class="write-rating">
+    <label class="cat-label">Comfort</label>
+    <p-rating [readonly]="true" [cancel]="false" [ngModel]="rating.comfortability"></p-rating>
+    <label class="cat-label">Food Quality</label>
+    <p-rating [readonly]="true" [cancel]="false" [ngModel]="rating.food_quality"></p-rating>
+    <label class="cat-label">Service</label>
+    <p-rating [readonly]="true" [cancel]="false" [ngModel]="rating.service"></p-rating>
+    <label class="cat-label">Cleanliness</label>
+    <p-rating [readonly]="true" [cancel]="false" [ngModel]="rating.cleanliness"></p-rating>
+    <label class="cat-label">Comment</label>
+    <label class="comment">{{rating.comment}}</label>
+    <label class="from">{{'Review from: ' + rating.user_name}}</label>
+</div>

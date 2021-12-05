@@ -1,0 +1,166 @@
+<!-- Top bar -->
+<div class="top-bar">
+    <label>Spartan Dining Guide</label>
+    <button pButton pRipple type="button" icon="pi pi-user" label="Profile" (click)="showUserPage()" class="p-button-text p-button-lg profile-btn"></button>
+</div>
+<div class="home-body">
+    <div *ngIf="viewRests" class="data-view">
+        <p-card>
+            <p-dataView [value]="restaurants" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="6" layout="list">
+                <ng-template pTemplate="header">
+                    <div class="dv-header">
+                        Local Restaurants
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+                        (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+                    </div>
+                </ng-template>
+                <ng-template let-restaurant pTemplate="listItem">
+                    <div style="width: 100%;">
+                        <div class="rest-list-item">
+                            <div class="rest-list-detail">
+                                <div class="rest-name">{{restaurant.restaurant_name}}</div>
+                                <div class="rest-description">{{restaurant.cuisine[0].toUpperCase() + restaurant.cuisine.substring(1)}}</div>
+                                <i class="pi pi-phone rest-icon"></i><span class="rest-phone">{{restaurant.phone_number}}</span>
+                            </div>
+                            <div class="rest-list-action">
+                                <button pButton pRipple icon="pi pi-book" (click)="showRestDetail(restaurant)" label="View"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>    
+        </p-card>
+    </div>
+    <div *ngIf="viewUser">
+        <button pButton pRipple type="button" icon="pi pi-times" label="Return" (click)="showRestaurantList()" class="p-button-text p-button-lg"></button>
+        <div class="user-container">
+            <div class="input-wrapper">
+                <label class="header-label">Update your information below.</label>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.user_name" placeholder="Username">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.email" placeholder="Email">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.password" placeholder="Password">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.address" placeholder="Address">         
+                </span>
+                <span class="p-input-icon-left user-name-input">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.phone_number" placeholder="Phone Number">         
+                </span>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="ls.currentUser.favorite_food" placeholder="Favorite Food">         
+                </span>
+                <button pButton pRipple type="button" label="Update" class="p-button-rounded p-button-lg submit"></button>
+            </div>
+            <div class="user-questions">
+                <app-question *ngFor="let question of ls.currentUser.questions" [question]="question" [userQuest]="true"></app-question>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="viewRestDetail" class="rest-detail">
+        <p-card>
+            <div class="detail-header">
+                <button pButton pRipple type="button" icon="pi pi-times" (click)="showRestaurantList(); detailActiveMenuTab = 'Menu'" class="p-button-warning p-button-lg return"></button>
+                <label>{{restDetail.restaurant_name}}</label>
+            </div>
+            <div class="header-under">
+                <div class="header-group" style="margin-bottom: 12px;">
+                    {{restDetail.cuisine[0].toUpperCase() + restDetail.cuisine.substring(1)}}
+                </div>
+                <div class="header-group">
+                    <i class="pi pi-map-marker"></i>
+                    {{restDetail.address}}
+                </div>
+                <div class="header-group">
+                    <i class="pi pi-phone"></i>
+                    {{restDetail.phone_number}}
+                </div>
+                <div class="header-group">
+                    <i class="pi pi-globe"></i>
+                    {{restDetail.website}}
+                </div>
+            </div>
+            <div class="detail-menu">
+                <div class="menu-header">
+                    <p-tabMenu [model]="detailMenuItems" [activeItem]="this.detailMenuItems[0]"></p-tabMenu>
+                </div>
+                <div class="menu-container">
+                    <div *ngIf="detailActiveMenuTab === 'Menu'">
+                        <app-menu *ngFor="let menu of restDetail.menus" [menu]="menu"></app-menu>
+                    </div>
+                    <div *ngIf="detailActiveMenuTab === 'Hours'" class="hours-container">
+                        <label class="day">Monday</label>
+                        <label class="range">{{restDetail.Monday_From + ' - ' + restDetail.Monday_To}}</label>
+                        <label class="day">Tuesday</label>
+                        <label class="range">{{restDetail.Tuesday_From + ' - ' + restDetail.Tuesday_To}}</label>
+                        <label class="day">Wednesday</label>
+                        <label class="range">{{restDetail.Wednesday_From + ' - ' + restDetail.Wednesday_To}}</label>
+                        <label class="day">Thursday</label>
+                        <label class="range">{{restDetail.Thursday_From + ' - ' + restDetail.Thursday_To}}</label>
+                        <label class="day">Friday</label>
+                        <label class="range">{{restDetail.Friday_From + ' - ' + restDetail.Friday_To}}</label>
+                        <label class="day">Saturday</label>
+                        <label class="range">{{restDetail.Saturday_From + ' - ' + restDetail.Saturday_To}}</label>
+                        <label class="day">Sunday</label>
+                        <label class="range">{{restDetail.Sunday_From + ' - ' + restDetail.Sunday_To}}</label>
+                    </div>
+                    <div *ngIf="detailActiveMenuTab === 'Questions'" class="questions-container">
+                        <label class="questions-header">Ask Question</label>
+                        <div class="p-inputgroup" style="margin: 1rem; width: 900px;">
+                            <input type="text"pInputText [(ngModel)]="questionString" placeholder="Ask question...">
+                            <button type="button" pButton pRipple icon="pi pi-question" (click)="postQuestion()"></button>
+                        </div>
+                        <label class="questions-header">Questions</label>
+                        <app-question *ngFor="let question of restDetail.questions" [question]="question"></app-question>
+                    </div>
+                    <div *ngIf="detailActiveMenuTab === 'Ratings'" class="ratings-container">
+                        <div class="list-ratings">
+                            <label class="ratings-header">Reviews</label>
+                            <app-rating *ngFor="let rating of restDetail.ratings" [rating]="rating"></app-rating>
+                        </div>
+                        <div class="write-rating">
+                            <label class="ratings-header">Submit a Review</label>
+                            <label class="cat-label">Comfort</label>
+                            <p-rating [(ngModel)]="comfortRating"></p-rating>
+                            <label class="cat-label">Food Quality</label>
+                            <p-rating [(ngModel)]="fqRating"></p-rating>
+                            <label class="cat-label">Service</label>
+                            <p-rating [(ngModel)]="serviceRating"></p-rating>
+                            <label class="cat-label">Cleanliness</label>
+                            <p-rating [(ngModel)]="cleanRating"></p-rating>
+                            <div class="p-inputgroup" style="margin: 1rem; width: 400px;">
+                                <input type="text"pInputText [(ngModel)]="commentString" placeholder="Comment...">
+                                <button type="button" pButton pRipple icon="pi pi-comment" (click)="postRating()"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="detailActiveMenuTab === 'Info'" class="parking-container">
+                        <label class="capacity">{{'Restaurant Capacity: '+ restDetail.capacity}}</label>
+                        <label class="chef">{{'Chef: '+ restDetail.chef}}</label>
+                        <label class="parking-header">Parking Locations</label>
+                        <div *ngFor="let parking of restDetail.parkings" class="indv-parking">
+                            <label class="p-address">{{parking.parking_address}}</label>
+                            <label class="p-capactiy">{{'Total Capacity: ' + parking.total_capacity}}</label>
+                            <label class="p-h-capacity">{{'Handicap Capacity: ' + parking.handicap_capacity}}</label>
+                            <div class="cost-wrapper">
+                                <i class="pi pi-dollar"></i>
+                                <label class="p-cost">{{parking.cost}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p-card>
+
+    </div>
+</div>

@@ -1,0 +1,233 @@
+.top-bar {
+    height: 72px;
+    width: 100vw;
+    background-color: rgb(0, 119, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    label {
+        padding: 32px;
+        font-size: 32px;
+        color: white;
+    }
+    .profile-btn {
+        color: white;
+        padding-left: 32px;
+        padding-right: 32px;
+        border-left: 2px solid white;
+    }
+}
+.home-body {
+    width: 100vw;
+    background-color:#efefef;
+    .data-view {
+        padding: 44px;
+        .dv-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    .user-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .user-name-input {
+                margin-bottom: 48px;
+            }
+            .submit {
+                margin-top: 36px;
+                margin-bottom: 36px;
+            }
+            .header-label {
+                font-size: 36px;
+                color: rgb(0, 119, 255);
+                margin-bottom: 36px;
+            }
+        }
+        .user-questions {
+            .header {
+                font-size: 36px;
+                color: rgb(0, 119, 255);
+            }
+            .question {
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                .user-asking {
+                    font-weight: 300;
+                    font-size: 0.8rem;
+                    padding-bottom: 0.2rem;
+                }
+                .asked-question {
+                    font-weight: 550;
+                    font-size: 1.3rem;
+                }
+                .answer {
+                    padding: 0.75rem;
+                    padding-bottom: 0.2rem;
+                }
+                .user-answering {
+                    padding-left: 0.9rem;
+                    font-size: 0.8rem;
+                    font-weight: 300;
+                    padding-bottom: 1rem;
+                }
+            }
+        }
+    }
+}
+.rest-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    .rest-list-detail {
+        flex: 1 1 0;
+        .rest-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .rest-description {
+            margin-bottom: 1rem;
+        }
+        .rest-icon {
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+        .rest-phone {
+            font-weight: 600;
+            vertical-align: middle;
+        }
+    }
+    .rest-list-action {
+
+    }
+}
+
+.rest-detail {
+    padding: 44px;
+    height: max-content;
+    .detail-header {
+        display: flex;
+        align-items: flex-start;
+        .return {
+            margin: 8px;
+        }
+        label {
+            padding-top: 48px;
+            padding-bottom: 6px;
+            padding-left: 65px;
+            font-size: 74px;
+            font-weight: 700;
+        }
+    }
+    .header-under {
+        margin-left: 150px;
+        .header-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: baseline;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            i {
+                padding-right: 1.5rem;
+            }
+        }
+    }
+    .detail-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 48px;
+        margin-bottom: 30px;
+        .menu-header {
+            width: 700px;
+            margin-bottom: 32px;
+        }
+        .menu-container {
+            padding: 12px;
+            width: 55vw;
+            border: 1px solid rgb(168, 168, 168);
+            border-radius: 10px;
+            .hours-container {
+                display: flex;
+                flex-direction: column;
+                .day {
+                    font-weight: 600;
+                }
+                .range {
+
+                }
+            }
+            .questions-container {
+                display: flex;
+                flex-direction: column;
+                .questions-header {
+                    font-weight: 600;
+                    font-size: 2rem;
+                    padding: 0.5rem;
+                }
+            }
+            .ratings-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                .write-rating {
+                    display: flex;
+                    flex-direction: column;
+                    .ratings-header {
+                        font-weight: 600;
+                        font-size: 2rem;
+                        padding: 0.5rem;
+                    }
+                    .cat-label {
+                        padding: 0.75rem;
+                        padding-left: 0.1rem;
+                        font-weight: 525;
+                    }
+                }
+                .list-ratings {
+                    .ratings-header {
+                        font-weight: 600;
+                        font-size: 2rem;
+                        padding: 0.5rem;
+                    }
+                }
+            }
+            .parking-container {
+                display: flex;
+                flex-direction: column;
+                .capacity {
+
+                }
+                .chef {
+
+                }
+                .parking-header {
+                    font-size: 34px;
+                    font-weight: 600;
+                    padding-bottom: 28px;
+                    padding-top: 28px;
+                }
+                .indv-parking {
+                    display: flex;
+                    flex-direction: column;
+                    padding-bottom: 16px;
+                    .cost-wrapper {
+                        padding-top: 0.5rem;
+                        display: inline-flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+    }
+}

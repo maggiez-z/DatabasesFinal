@@ -1,0 +1,12 @@
+.answer-container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    .answer {
+
+    }
+    .answer-by {
+        font-weight: 400;
+        font-size: 0.75rem;
+    }
+}

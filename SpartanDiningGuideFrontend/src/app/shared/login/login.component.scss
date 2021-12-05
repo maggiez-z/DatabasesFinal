@@ -1,0 +1,20 @@
+.user-name-input {
+    margin-bottom: 48px;
+}
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.submit {
+    margin-top: 36px;
+    margin-bottom: 36px;
+}
+.failed-alert {
+    color: rgb(218, 78, 78);
+}
+.header-label {
+    font-size: 36px;
+    color: rgb(219, 219, 219);
+    margin-bottom: 36px;
+}
