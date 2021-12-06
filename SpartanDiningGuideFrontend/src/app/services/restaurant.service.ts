@@ -59,7 +59,7 @@ export class RestaurantService {
   }
 
   postAnswer(answer: string, questionId: number) {
-    let answerObj = {answer: answer, question_id: questionId, user_id: this.ls.currentUser.user_id, time_answered: new Date().toDateString(), answer_id: 0}
+    let answerObj = {answer: answer, question_id: questionId, user_id: this.ls.currentUser.user_id, time_answered: "Wed Dec 01 2021", answer_id: 0}
     this.get('highestAnswerId').then(res => {
       let stringNum = res[0]['max'];
       answerObj['answer_id'] = stringNum + 1;
@@ -71,7 +71,7 @@ export class RestaurantService {
   }
 
   postQuestion(question: string, restaurant_id: number) {
-    let questionObj = {question: question, question_id: 0, user_id: this.ls.currentUser.user_id, time_asked: new Date().toDateString(), restaurant_id: restaurant_id}
+    let questionObj = {question: question, question_id: 0, user_id: this.ls.currentUser.user_id, time_asked: "Wed Dec 01 2021", restaurant_id: restaurant_id}
     this.get('highestQuestionId').then(res => {
       let stringNum = res[0]['max'];
       questionObj['question_id'] = stringNum + 1;

@@ -23,8 +23,8 @@ INSERT INTO Menu (menu_id, type) VALUES
   (000006, 'dinner');
 
 INSERT INTO Dish (dish_id, dish_name, ingredients, calories, price) VALUES
-  (000001, 'Little Den Burger', 'Beef, Lettuce, Tomato', 400, 7),
-  (000006, 'Den Burger', 'Beef, Lettuce, Tomato', 400, 7),
+  (000001, 'Little Den Burger', 'Beef, Lettuce, Tomato', 600, 7.50),
+  (000006, 'Den Burger', 'Beef, Lettuce, Tomato', 800, 9),
   (000002, 'Pokebowl', 'Beef, Lettuce, Shimp', 300, 12),
   (000003, 'Udon bowl', 'Tofu, noodle', 200, 9),
   (000004, 'Ramen', 'pork, corn, noodle', 300, 13),
@@ -76,19 +76,19 @@ INSERT INTO Parking (parking_id, parking_address, total_capacity, handicap_capac
   (000006, '1754 Ansel RD', 155, 20, 5),
   (000007, '1755 Ansel RD', 166, 20, 5);
 
-INSERT INTO Ask_question (user_id, question_id, question, time_asked) VALUES
-  (000001, 000001, 'how is this restaurant', 'Oct 1'),
-  (000002, 000002, 'Is this restaurant quiet', 'Oct 2'),
-  (000003, 000003, 'How is the service', 'Oct 3'),
-  (000004, 000004, 'Is this restaurant vegan friendly', 'Oct 4'),
-  (000005, 000005, 'Does this restaurant provide gluten-free dishes', 'Oct 5');
+-- INSERT INTO Ask_question (user_id, question_id, question, time_asked) VALUES
+--   (000001, 000001, 'how is this restaurant', 'Oct 1'),
+--   (000002, 000002, 'Is this restaurant quiet', 'Oct 2'),
+--   (000003, 000003, 'How is the service', 'Oct 3'),
+--   (000004, 000004, 'Is this restaurant vegan friendly', 'Oct 4'),
+--   (000005, 000005, 'Does this restaurant provide gluten-free dishes', 'Oct 5');
 
-INSERT INTO Restaurant_question (user_id, question_id, restaurant_id) VALUES
-  (000001, 000001, 000001),
-  (000002, 000002, 000002),
-  (000003, 000003, 000003),
-  (000004, 000004, 000004),
-  (000005, 000005, 000005);
+-- INSERT INTO Restaurant_question (user_id, question_id, restaurant_id) VALUES
+--   (000001, 000001, 000001),
+--   (000002, 000002, 000002),
+--   (000003, 000003, 000003),
+--   (000004, 000004, 000004),
+--   (000005, 000005, 000005);
 
 -- INSERT INTO Give_answer (user_id, answer_id, answer, time_answered) VALUES
 --   (1, 000001, 'Worst restaurant', 'Oct 2'),
@@ -111,4 +111,6 @@ INSERT INTO Has_Parking(restaurant_id, parking_id) VALUES
   (000003, 000003),
   (000004, 000004),
   (000005, 000005);
-  
+--  SELECT d.dish_id, d.dish_name, d.ingredients, d.calories, d.price FROM has_dish h, Dish d WHERE h.menu_id = 6 AND h.dish_id = d.dish_id;
+  -- SELECT q.question_id, q.question, q.time_asked, u.user_name FROM Restaurant_question r, Ask_question q, User u WHERE r.restaurant_id = 1 AND r.question_id = q.question_id AND q.user_id = u.user_id;
+ --SELECT u.user_name, a.answer_id, a.answer, a.time_answered FROM has_answer h, Give_answer a, User u WHERE h.question_id = 11 AND h.answer_id = a.answer_id AND a.user_id = u.user_id;
